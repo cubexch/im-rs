@@ -192,6 +192,19 @@ impl<A: BTreeValue> Node<A> {
         }
     }
 
+    pub(crate) fn min_mut(&mut self, pool: &Pool<Node<A>>) -> Option<&mut A>
+    where
+        A: Clone,
+    {
+        match self.children.first_mut().unwrap() {
+            None => self.keys.first_mut(),
+            Some(ref mut child_ref) => {
+                let child = PoolRef::make_mut(pool, child_ref);
+                child.min_mut(pool)
+            }
+        }
+    }
+
     pub(crate) fn lookup<BK>(&self, key: &BK) -> Option<&A>
     where
         BK: Ord + ?Sized,

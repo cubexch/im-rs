@@ -650,6 +650,13 @@ where
         root.lookup_mut(&self.pool.0, key).map(|(_, v)| v)
     }
 
+    /// Get a mutable reference to the minimum value
+    #[must_use]
+    pub fn get_min_mut(&mut self) -> Option<(&K, &mut V)> {
+        let root = PoolRef::make_mut(&self.pool.0, &mut self.root);
+        root.min_mut(&self.pool.0).map(|node| (&node.0, &mut node.1))
+    }
+
     /// Get the closest smaller entry in a map to a given key
     /// as a mutable reference.
     ///
