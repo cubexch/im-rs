@@ -17,7 +17,7 @@ pub(crate) trait PoolClone: Clone {}
 impl<A> PoolDefault for Chunk<A> {}
 impl<A> PoolClone for Chunk<A> where A: Clone {}
 
-pub(crate) struct Pool<A>(PhantomData<A>);
+pub struct Pool<A>(PhantomData<A>);
 
 impl<A> Pool<A> {
     pub(crate) fn new(_size: usize) -> Self {
