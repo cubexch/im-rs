@@ -131,6 +131,11 @@ macro_rules! def_pool {
                 self.0.clone()
             }
 
+            /// Get the inner pool ref
+            pub fn inner_ref(&self) -> &Pool<$pooltype> {
+                &self.0
+            }
+
             /// Construct the wrapper from its inner pool
             pub fn wrap(inner: Pool<$pooltype>) -> Self {
                 Self(inner)
