@@ -98,8 +98,9 @@ pub struct HashSet<A, S = RandomState> {
     size: usize,
 }
 
+/// Exposed for pool inner
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Debug)]
-struct Value<A>(A);
+pub struct Value<A>(A);
 
 impl<A> Deref for Value<A> {
     type Target = A;

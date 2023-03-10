@@ -125,6 +125,16 @@ macro_rules! def_pool {
             pub fn pool_size(&self) -> usize {
                 self.0.get_pool_size()
             }
+
+            /// Get the inner pool for e.g casts
+            pub fn inner(&self) -> Pool<$pooltype> {
+                self.0.clone()
+            }
+
+            /// Construct the wrapper from its inner pool
+            pub fn wrap(inner: Pool<$pooltype>) -> Self {
+                Self(inner)
+            }
         }
 
         impl<$($arg,)*> Default for $name<$($arg,)*> {

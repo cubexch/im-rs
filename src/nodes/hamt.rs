@@ -40,8 +40,9 @@ pub trait HashValue {
     fn ptr_eq(&self, other: &Self) -> bool;
 }
 
+/// Exposed for pool inner
 #[derive(Clone)]
-pub(crate) struct Node<A> {
+pub struct Node<A> {
     data: SparseChunk<Entry<A>, HashWidth>,
 }
 

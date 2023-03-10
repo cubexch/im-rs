@@ -63,8 +63,9 @@ macro_rules! ordset {
     }};
 }
 
+/// Exposed for pool inner
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Debug)]
-struct Value<A>(A);
+pub struct Value<A>(A);
 
 impl<A> Deref for Value<A> {
     type Target = A;
