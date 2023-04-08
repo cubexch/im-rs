@@ -1045,15 +1045,22 @@ impl<'a, A: BTreeValue> Iter<'a, A> {
             Some((node, index)) => match node.children[index] {
                 Some(ref child) => {
                     path.push((node, index));
-                    let mut end = child.keys.len() - 1;
-                    path.push((child, end));
+                    let mut end = child.children.len() - 1;
                     let mut node = child;
-                    while let Some(ref right_child) = node.children[end + 1] {
-                        end = right_child.keys.len() - 1;
-                        path.push((right_child, end));
-                        node = right_child;
+                    loop {
+                        match node.children[end] {
+                            None => {
+                                path.push((node, end - 1));
+                                break;
+                            }
+                            Some(ref right_child) => {
+                                path.push((node, end));
+                                node = right_child;
+                                end = right_child.children.len() - 1;
+                            }
+                        }
                     }
-                    Some(&node.keys[end])
+                    Some(&node.keys[end - 1])
                 }
                 None => {
                     if index == 0 {

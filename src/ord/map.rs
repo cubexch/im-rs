@@ -2425,6 +2425,15 @@ mod test {
     }
 
     #[test]
+    fn iter_rev() {
+        let num_elems = 100_000;
+        let omap = (0..num_elems).map(|v| (v, v)).collect::<OrdMap<usize, usize>>();
+        assert_eq!(num_elems, omap.len());
+        assert_eq!(num_elems, omap.iter().count());
+        assert_eq!(num_elems, omap.iter().rev().count());
+    }
+
+    #[test]
     fn issue_124() {
         let mut map = OrdMap::new();
         let contents = include_str!("test-fixtures/issue_124.txt");
