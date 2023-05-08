@@ -33,14 +33,14 @@ version_check = "0.9"
 [dependencies]
 typenum = "1.12"
 bitmaps = "2"
-sized-chunks = { git = "https://github.com/quarkqbe/sized-chunks.git", branch = "fork" }
+sized-chunks = { git = "https://github.com/cubexch/sized-chunks.git", branch = "fork" }
 rand_core = "0.6"
 rand_xoshiro = "0.6"
 quickcheck = { version = "1", optional = true }
 proptest = { version = "1", optional = true }
 serde = { version = "1", optional = true }
 rayon = { version = "1", optional = true }
-refpool = { git = "https://github.com/quarkqbe/refpool.git", optional = true }
+refpool = { git = "https://github.com/cubexch/refpool.git", optional = true }
 arbitrary = { version = "1.1", optional = true }
 
 [dev-dependencies]
